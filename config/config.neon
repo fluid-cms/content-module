@@ -1,0 +1,50 @@
+parameters:
+	routing:
+		content:
+			- ['stranka/<id>-<title>', 'Content:default']
+			- ['stranka/<id>', [presenter: Content, action: default, id: [filterIn: [@Grapesc\GrapeFluid\ContentModule\RouteFilter\Content, filterIn], filterOut: [@Grapesc\GrapeFluid\ContentModule\RouteFilter\Content, filterOut]]]]
+			- ['content/<presenter>/<action>[/<id>]', 'Content:default']
+
+	collections:
+		content:
+			name: 'Statické stránky'
+			icon: 'file'
+			class:
+				- Grapesc\GrapeFluid\ContentModule\Collection\ContentCollection
+
+	translator:
+		locales:
+			- '%moduleDir%/ContentModule/config/Locale/cs.neon'
+
+	backend:
+		auth:
+			content: 'content'
+		menu:
+			Stránky:
+				order: 2
+				icon: 'pencil'
+				auth: '%backend.auth.content%'
+				submenu:
+					Přehled stránek:
+						icon: 'th'
+						link: ':Admin:Content:default'
+						selected:
+							- ':Admin:Content:default'
+							- ':Admin:Content:edit'
+					Vytvořit stránku:
+						icon: 'plus-circle'
+						link: ':Admin:Content:create'
+
+services:
+	- Grapesc\GrapeFluid\ContentModule\Model\PageModel
+	- Grapesc\GrapeFluid\ContentModule\PageForm
+	- Grapesc\GrapeFluid\ContentModule\RouteFilter\Content
+
+
+assets:
+	owlcarousel:
+		limit:
+			- ':Content:Content:.*'
+	summer:
+		limit:
+			- ['link' = ':Content:Content:.*', 'auth' = 'backend:content', 'option' = 'content.edit.inline']

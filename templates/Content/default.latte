@@ -1,0 +1,26 @@
+{block title}
+    {$page->title}
+{/block}
+
+{block content}
+    <div n:tag-if="$user->isAllowed('backend:content') && $inlineEnabled" id="content-inline" contenteditable="false">
+        {$content|noescape}
+    </div>
+{/block}
+
+{block scripts}
+    {if $user->isAllowed('backend:content') && $inlineEnabled}
+        <script>
+            $(document).ready(function () {
+               $('#content-inline').fluidNote({
+                   title: "Úprava stránky - " + {$page->title},
+                   basePath: {$basePath},
+                   editLink: {link :Admin:Content:edit $page->id},
+                   editSignal: {link inlineEdit! 'inlineEditId' => $page->id},
+                   uploadSignal: {link uploadImage!},
+                   inline: true
+               });
+            });
+        </script>
+    {/if}
+{/block}

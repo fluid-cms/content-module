@@ -1,0 +1,2 @@
+INSERT INTO `core_setting` (`variable`, `value`, `default_value`, `type`, `description`, `options`) VALUES
+('content.edit.inline', '0', '0', 'select', 'Povolit úpravy obsahu z webu', '{"0":"ne","1":"ano"}');

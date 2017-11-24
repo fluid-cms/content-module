@@ -1,0 +1,51 @@
+{extends $defaultTemplate}
+
+
+{define body-cell-title}
+    <td>
+        <a href="{plink :Content:Content:default, $record->id}" target="_blank">{$record->title}</a>
+    </td>
+{/define}
+
+{define body-cell-bread_crumb}
+    <td>
+        <div n:if="$record->bread_crumb">
+            {foreach json_decode($record->bread_crumb) as $name => $link}
+                {var $params = []}
+                {if $link && count($link) > 0}
+                    {foreach $link[1] as $parameters}
+                        {var $params[$parameters[0]] = $parameters[1]}
+                    {/foreach}
+                {/if}
+                {$name}{if $link}({$link[0]}{foreach $params as $key => $value}{$key} => {$value}{if $iterator->last}{else}, {/if}{/foreach}){/if}
+                {if $iterator->last}{else}, {/if}
+            {/foreach}
+        </div>
+    </td>
+{/define}
+
+{define body-cell-parent_id}
+    <td>
+        {if $record->parent}
+            {$record->parent->title}
+        {/if}
+    </td>
+{/define}
+
+{define row-action-edit}
+    <a href="{$link}" class="btn btn-primary btn-xs" data-toggle="tooltip" title="Upravit">
+        <i class="fa fa-pencil"></i>
+    </a>
+{/define}
+
+{define row-action-inline}
+    <a href="{$link}" target="_blank" class="btn btn-primary btn-xs" data-toggle="tooltip" title="Upravit přímo na stránce">
+        <i class="fa fa-external-link"></i>
+    </a>
+{/define}
+
+{define row-action-delete}
+    <a href="{$link}" class="btn btn-danger btn-xs tw-ajax" data-ajax="on" data-confirm="Opravdu chcete stránku smazat?" data-toggle="tooltip" title="Smazat">
+        <i class="fa fa-times"></i>
+    </a>
+{/define}
