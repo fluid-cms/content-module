@@ -6,7 +6,7 @@ use Grapesc\GrapeFluid\AdminModule\ComponentListControl\IComponentListControlFac
 use Grapesc\GrapeFluid\ContentModule\Model\PageModel;
 use Grapesc\GrapeFluid\ContentModule\PageForm;
 use Grapesc\GrapeFluid\FluidFormControl\FluidFormControl;
-use Grapesc\GrapeFluid\NewsFeedModule\Grid\PageGrid;
+use Grapesc\GrapeFluid\ContentModule\Grid\PageGrid;
 
 
 class ContentPresenter extends BasePresenter

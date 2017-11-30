@@ -1,6 +1,6 @@
 <?php
 
-namespace Grapesc\GrapeFluid\NewsFeedModule\Grid;
+namespace Grapesc\GrapeFluid\ContentModule\Grid;
 
 use Grapesc\GrapeFluid\FluidGrid;
 use Nette\Database\Table\ActiveRow;
