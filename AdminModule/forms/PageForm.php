@@ -28,11 +28,12 @@ class PageForm extends FluidForm
 			->addRule(Form::MAX_LENGTH, "Maximální velikost je %s znaků", 200)
 			->setRequired("Titulek je povinný");
 
-		$form->addText("slug", "Slug")
+		$form->addText("slug", "Vlastní slug")
 			->setRequired(false)
 			->setAttribute("cols", 6)
-			->setAttribute("help", "Titulek zobrazený v url")
+			->setAttribute("help", "Titulek zobrazený v url - výchozí je <id>-<titulek>")
 			->addCondition(Form::FILLED)
+				->addRule(Form::PATTERN, "Slug může obsahovat pouze znaky a-z, 0-9, _ a -", "[a-z0-9_\-]+\w")
 				->addRule(Form::MAX_LENGTH, "Maximální velikost je %s znaků", 200);
 
 		$form->addText("description", "Popis stránky (SEO description)")
