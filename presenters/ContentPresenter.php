@@ -49,9 +49,6 @@ class ContentPresenter extends BasePresenter
 			"keywords"    => $this->page->keywords
 		]);
 
-//            TODO: Pokud 'content' obsahuje obsah dalších komponent / boxů, je třeba ho odříznout a nahradit zpět magic makrem
-//            $this->template->inlineEnabled = ($this->setting->getVal("content.edit.inline") && !Helper::containsMagicMacros($page->content));
-
 		foreach ($this->getParents($this->page->parent_id, []) as $parent) {
 			if ($parent->slug) {
 				$this->breadCrumbService->addLink($parent->title, [':Content:Content:default', ['id' => $parent->slug]]);
