@@ -17,16 +17,9 @@ class PageGrid extends FluidGrid
 
 		$this->addRowAction("edit", "Upravit", [$this, 'editPage']);
 		$this->addRowAction("inline", "Upravit na stránce", [$this, 'inlineEditPage']);
+		$this->addRowAction("duplicate", "Duplikovat", [$this, 'duplicatePage']);
 		$this->addRowAction("delete", "Smazat", [$this, 'deletePage']);
 		parent::build();
-	}
-
-
-	public function deletePage(ActiveRow $record)
-	{
-		$record->delete();
-		$this->getPresenter()->flashMessage("Stránka smazána", "success");
-		$this->getPresenter()->redrawControl("flashMessages");
 	}
 
 
@@ -39,6 +32,25 @@ class PageGrid extends FluidGrid
 	public function inlineEditPage(ActiveRow $record)
 	{
 		$this->getPresenter()->redirect(":Content:Content:default", ["id" => $record->id]);
+	}
+
+
+	public function duplicatePage(ActiveRow $record)
+	{
+		$data = $record->toArray();
+		unset($data['id']);
+		$data['title'] .= " (kopie)";
+		$this->model->insert($data);
+		$this->getPresenter()->flashMessage("Stránka duplikována", "success");
+		$this->getPresenter()->redrawControl("flashMessages");
+	}
+
+
+	public function deletePage(ActiveRow $record)
+	{
+		$record->delete();
+		$this->getPresenter()->flashMessage("Stránka smazána", "success");
+		$this->getPresenter()->redrawControl("flashMessages");
 	}
 
 }
