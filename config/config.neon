@@ -42,6 +42,10 @@ services:
 
 
 assets:
+	config:
+		options:
+			- Grapesc\GrapeFluid\ContentModule\ContentAssetOption
+
 	owlcarousel:
 		limit:
 			- ':Content:Content:.*'
