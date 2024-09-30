@@ -9,7 +9,7 @@ use Nette\Database\Table\ActiveRow;
 class PageGrid extends FluidGrid
 {
 
-	protected function build()
+	protected function build(): void
 	{
 		$this->setItemsPerPage(15);
 		$this->skipColumns(["content"]);
