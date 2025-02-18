@@ -74,7 +74,7 @@ class PageForm extends FluidForm
 	protected function submit(Control $control, Form $form)
 	{
 		$presenter = $control->getPresenter();
-		$values = $form->getValues(true);
+		$values = $form->getValues('array');
 		$values['content'] = Helper::createSafeEscapeString($values['content']);
 
 		if (isset($values['id']) && (int) $values['id'] > 0) {
