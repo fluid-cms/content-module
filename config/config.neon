@@ -41,7 +41,7 @@ services:
 	- Grapesc\GrapeFluid\ContentModule\RouteFilter\Content
 
 
-assets:
+fluidAssets:
 	config:
 		options:
 			- Grapesc\GrapeFluid\ContentModule\ContentAssetOption
